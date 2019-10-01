@@ -1,0 +1,9 @@
+{
+  "root": true,
+
+  "extends": ["ai", "ai/jest"],
+
+  "rules": {
+    // ---
+  }
+}

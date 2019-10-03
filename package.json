@@ -26,7 +26,6 @@
     ]
   },
   "dependencies": {
-    "has-ansi": "4.0.0",
     "triple-beam": "1.3.0",
     "winston": "3.2.1"
   },

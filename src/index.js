@@ -4,7 +4,6 @@ const { inspect } = require('util');
 const { EOL } = require('os');
 const { format } = require('winston');
 const { MESSAGE, SPLAT } = require('triple-beam');
-const hasAnsi = require('has-ansi');
 
 function isPrimitive(val) {
   return val === null || (typeof val !== 'object' && typeof val !== 'function');
@@ -16,7 +15,7 @@ function formatWithInspect(val) {
   }
 
   const prefix = isPrimitive(val) ? '' : EOL;
-  const shouldFormat = typeof val !== 'string' || !hasAnsi(val);
+  const shouldFormat = typeof val !== 'string';
 
   return (
     prefix + (shouldFormat ? inspect(val, { depth: null, colors: true }) : val)

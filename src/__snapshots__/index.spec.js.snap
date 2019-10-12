@@ -70,7 +70,7 @@ Error: Why u broke, ha?
 exports[`prettyConsoleFormat errors should support error value with extra primitive values 1`] = `
 "error:
 Error: Why u broke, ha?
-    at Object.it (/Users/alex/www/Node/Personal/winston-format-pretty-console/src/index.spec.js:150:19)
+    at Object.it (/Users/alex/www/Node/Personal/winston-format-pretty-console/src/index.spec.js:144:19)
     at Object.asyncJestTest (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
     at resolve (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:43:12)
     at new Promise (<anonymous>)

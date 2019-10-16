@@ -32,37 +32,34 @@ exports[`prettyConsoleFormat errors should support Object message and error valu
 "error:
 { one: [33m1[39m, two: [33m2[39m }
 Error: Why u broke, ha?
-    at Object.it (/Users/alex/www/Node/Personal/winston-format-pretty-console/src/index.spec.js:187:19)
+    at Object.it (/Users/alex/www/Node/Personal/winston-format-pretty-console/src/index.spec.js)
     at Object.asyncJestTest (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
     at resolve (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:43:12)
     at new Promise (<anonymous>)
     at mapper (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-    at promise.then (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:73:41)
-    at process._tickCallback (internal/process/next_tick.js:68:7)"
+    at promise.then (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:73:41)"
 `;
 
 exports[`prettyConsoleFormat errors should support error value 1`] = `
 "error: 
 Error: Why u broke, ha?
-    at Object.it (/Users/alex/www/Node/Personal/winston-format-pretty-console/src/index.spec.js:104:19)
+    at Object.it (/Users/alex/www/Node/Personal/winston-format-pretty-console/src/index.spec.js)
     at Object.asyncJestTest (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
     at resolve (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:43:12)
     at new Promise (<anonymous>)
     at mapper (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-    at promise.then (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:73:41)
-    at process._tickCallback (internal/process/next_tick.js:68:7)"
+    at promise.then (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:73:41)"
 `;
 
 exports[`prettyConsoleFormat errors should support error value with extra Object values 1`] = `
 "error: 
 Error: Why u broke, ha?
-    at Object.it (/Users/alex/www/Node/Personal/winston-format-pretty-console/src/index.spec.js:124:19)
+    at Object.it (/Users/alex/www/Node/Personal/winston-format-pretty-console/src/index.spec.js)
     at Object.asyncJestTest (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
     at resolve (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:43:12)
     at new Promise (<anonymous>)
     at mapper (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
     at promise.then (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:73:41)
-    at process._tickCallback (internal/process/next_tick.js:68:7)
 { one: [33m1[39m, two: [33m2[39m }
 [ [33m3[39m, [33m4[39m, [33m5[39m ]"
 `;
@@ -70,38 +67,51 @@ Error: Why u broke, ha?
 exports[`prettyConsoleFormat errors should support error value with extra primitive values 1`] = `
 "error:
 Error: Why u broke, ha?
-    at Object.it (/Users/alex/www/Node/Personal/winston-format-pretty-console/src/index.spec.js:144:19)
+    at Object.it (/Users/alex/www/Node/Personal/winston-format-pretty-console/src/index.spec.js)
     at Object.asyncJestTest (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
     at resolve (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:43:12)
     at new Promise (<anonymous>)
     at mapper (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
     at promise.then (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:73:41)
-    at process._tickCallback (internal/process/next_tick.js:68:7)
  [33m123[39m 456"
 `;
 
 exports[`prettyConsoleFormat errors should support message and error value 1`] = `
 "error: [34m[ERR]:[39m
 Error: Why u broke, ha?
-    at Object.it (/Users/alex/www/Node/Personal/winston-format-pretty-console/src/index.spec.js:164:19)
+    at Object.it (/Users/alex/www/Node/Personal/winston-format-pretty-console/src/index.spec.js)
     at Object.asyncJestTest (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
     at resolve (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:43:12)
     at new Promise (<anonymous>)
     at mapper (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-    at promise.then (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:73:41)
-    at process._tickCallback (internal/process/next_tick.js:68:7)"
+    at promise.then (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:73:41)"
 `;
 
 exports[`prettyConsoleFormat errors should support message with extra value and then error value 1`] = `
 "error: [34m[ERR]:[39m [33m123[39m
 Error: Why u broke, ha?
-    at Object.it (/Users/alex/www/Node/Personal/winston-format-pretty-console/src/index.spec.js:213:19)
+    at Object.it (/Users/alex/www/Node/Personal/winston-format-pretty-console/src/index.spec.js)
     at Object.asyncJestTest (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/jasmineAsyncInstall.js:102:37)
     at resolve (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:43:12)
     at new Promise (<anonymous>)
     at mapper (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:26:19)
-    at promise.then (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:73:41)
-    at process._tickCallback (internal/process/next_tick.js:68:7)"
+    at promise.then (/Users/alex/www/Node/Personal/winston-format-pretty-console/node_modules/jest-jasmine2/build/queueRunner.js:73:41)"
+`;
+
+exports[`prettyConsoleFormat options should apply custom inspectOptions if passed 1`] = `
+"info: Deep nested data: expanded, no colors, max depth 2
+{
+  one: 1,
+  two: 2,
+  three: {
+    subThree: 3,
+    four: 4,
+    subFour: {
+      five: 5,
+      subFive: [Object]
+    }
+  }
+}"
 `;
 
 exports[`prettyConsoleFormat with other formatters should support format.colorize() 1`] = `"[32minfo[39m: The quick brown fox jumps over the lazy dog"`;

@@ -6,6 +6,16 @@ const chalk = require('chalk');
 
 const prettyConsoleFormat = require('./index');
 
+function cleanupErrorStack(str) {
+  return (
+    str
+      // Remove `:line:column` from this filename in the error stack
+      .replace(new RegExp(`(${__filename}):\\d+:\\d+`), '$1')
+      // Remove `internal/process/next_tick.js`, not always there
+      .replace(/\n.*internal\/process\/next_tick\.js:\d+:\d+\)/, '')
+  );
+}
+
 describe('prettyConsoleFormat', () => {
   describe('basic', () => {
     it('should support simple string message', () => {
@@ -117,7 +127,7 @@ describe('prettyConsoleFormat', () => {
         // @ts-ignore
         [LEVEL]: info.level
       });
-      expect(output[MESSAGE]).toMatchSnapshot();
+      expect(cleanupErrorStack(output[MESSAGE])).toMatchSnapshot();
     });
 
     it('should support error value with extra Object values', () => {
@@ -137,7 +147,7 @@ describe('prettyConsoleFormat', () => {
         // @ts-ignore
         [LEVEL]: info.level
       });
-      expect(output[MESSAGE]).toMatchSnapshot();
+      expect(cleanupErrorStack(output[MESSAGE])).toMatchSnapshot();
     });
 
     it('should support error value with extra primitive values', () => {
@@ -157,7 +167,7 @@ describe('prettyConsoleFormat', () => {
         // @ts-ignore
         [LEVEL]: info.level
       });
-      expect(output[MESSAGE]).toMatchSnapshot();
+      expect(cleanupErrorStack(output[MESSAGE])).toMatchSnapshot();
     });
 
     it('should support message and error value', () => {
@@ -180,7 +190,7 @@ describe('prettyConsoleFormat', () => {
         stack: err.stack,
         message: `${chalk.blue('[ERR]:')}`
       });
-      expect(output[MESSAGE]).toMatchSnapshot();
+      expect(cleanupErrorStack(output[MESSAGE])).toMatchSnapshot();
     });
 
     // Bug in Winston, Error `message` is concatenated to `info.message`,
@@ -206,7 +216,7 @@ describe('prettyConsoleFormat', () => {
         [LEVEL]: info.level,
         stack: err.stack
       });
-      expect(output[MESSAGE]).toMatchSnapshot();
+      expect(cleanupErrorStack(output[MESSAGE])).toMatchSnapshot();
     });
 
     it('should support message with extra value and then error value', () => {
@@ -226,6 +236,48 @@ describe('prettyConsoleFormat', () => {
         [LEVEL]: info.level,
         stack: err.stack
       });
+      expect(cleanupErrorStack(output[MESSAGE])).toMatchSnapshot();
+    });
+  });
+
+  describe('options', () => {
+    it('should apply custom inspectOptions if passed', () => {
+      const nestedData = {
+        one: 1,
+        two: 2,
+        three: {
+          subThree: 3,
+          four: 4,
+          subFour: {
+            five: 5,
+            subFive: {
+              six: 6,
+              subSix: {
+                seven: 7,
+                subSeven: {
+                  eight: 8
+                }
+              }
+            }
+          }
+        }
+      };
+
+      const info = {
+        level: 'info',
+        message: 'Deep nested data: expanded, no colors, max depth 2',
+        [SPLAT]: [nestedData]
+      };
+      const opts = {
+        inspectOptions: {
+          depth: 2,
+          colors: false,
+          compact: false
+        }
+      };
+      const output = prettyConsoleFormat().transform({ ...info }, opts);
+
+      expect(output).toMatchObject(info);
       expect(output[MESSAGE]).toMatchSnapshot();
     });
   });

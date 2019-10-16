@@ -5,36 +5,43 @@ const { EOL } = require('os');
 const { format } = require('winston');
 const { MESSAGE, SPLAT } = require('triple-beam');
 
+// https://nodejs.org/api/util.html#util_util_inspect_object_options
 const defaultInspectOpts = {
   depth: null,
-  colors: true
+  colors: true,
+  breakLength: 80,
+  maxArrayLength: 100,
+  compact: true
 };
 
 function isPrimitive(val) {
   return val === null || (typeof val !== 'object' && typeof val !== 'function');
 }
 
-function formatWithInspect(val, { inspectOpts = {} } = {}) {
+function formatWithInspect(val, inspectOptions = {}) {
   const prefix = isPrimitive(val) ? ' ' : EOL;
   const shouldFormat = typeof val !== 'string';
   const formattedVal = shouldFormat
-    ? inspect(val, { ...defaultInspectOpts, ...inspectOpts })
+    ? inspect(val, { ...defaultInspectOpts, ...inspectOptions })
     : val;
 
   return prefix + formattedVal;
 }
 
-function prettyConsoleFormat(info, { inspectOpts }) {
+function prettyConsoleFormat(info, { inspectOptions }) {
   let msgArg;
   const splatArgs = info[SPLAT] || [];
   const timestamp = info.timestamp ? `${info.timestamp} - ` : '';
+  const level = info.level;
+  const meta = info.meta ? [info.meta] : [];
 
-  // If Error passed as 1st argument
+  // If Error passed as `message`, e.g. `logger.info(new Error('123'))`
   if (info instanceof Error) {
     msgArg = `${EOL}${info.stack}`;
   } else {
-    // If Error is 2nd argument, `info.message` will be concatenated with
-    // the error `message` (don't know why that happens).
+    // If Error passed as meta, e.g. logger.info('something', new Error('123')),
+    // `error.message` is concatenated with `info.message`, see:
+    // https://github.com/winstonjs/winston#streams-objectmode-and-info-objects
     // We need to forcefully remove it to avoid a duplicate message
     if (splatArgs[0] instanceof Error && isPrimitive(info.message)) {
       info.message = info.message.replace(splatArgs[0].message, '');
@@ -43,8 +50,16 @@ function prettyConsoleFormat(info, { inspectOpts }) {
     msgArg = info.message;
   }
 
+  const customOptions = info.prettyConsole && info.prettyConsole.inspectOptions;
+  const formatOptions = customOptions || inspectOptions;
+
   const values = [msgArg]
+    // Support extra arguments passed beyond the `message`, e.g.
+    // `logger.info('123', [1, 2, 3])`
     .concat(splatArgs)
+    // Support meta, e.g.
+    // `logger.log({ level: 'info', message: '123', meta: [1, 2, 3] })`
+    .concat(meta)
     .map((value, index, arr) => {
       let suffix = '';
       const nextVal = arr[index + 1];
@@ -56,11 +71,11 @@ function prettyConsoleFormat(info, { inspectOpts }) {
         }
       }
 
-      return formatWithInspect(value, { inspectOpts }) + suffix;
+      return formatWithInspect(value, formatOptions) + suffix;
     })
     .join('');
 
-  return `${timestamp}${info.level}:${values}`;
+  return `${timestamp}${level}:${values}`;
 }
 
 module.exports = format((info, opts = {}) => {

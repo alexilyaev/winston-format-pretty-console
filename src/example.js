@@ -28,3 +28,36 @@ logger.error(new Error('Why u broke, ha?'), 123, '456');
 logger.error(chalk.blue('[ERR]:'), new Error('Why u broke, ha?'));
 logger.error({ one: 1, two: 2 }, new Error('Why u broke, ha?'));
 logger.error(chalk.blue('[ERR]:'), 123, new Error('Why u broke, ha?'));
+
+logger.log({
+  level: 'info',
+  message: 'Meta data',
+  // Override format options for this specific log
+  prettyConsole: {
+    inspectOptions: {
+      depth: 2,
+      colors: false,
+      compact: false
+    }
+  },
+  meta: {
+    one: 1,
+    two: 2,
+    three: {
+      subThree: 3,
+      four: 4,
+      subFour: {
+        five: 5,
+        subFive: {
+          six: 6,
+          subSix: {
+            seven: 7,
+            subSeven: {
+              eight: 8
+            }
+          }
+        }
+      }
+    }
+  }
+});

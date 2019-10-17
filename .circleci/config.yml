@@ -26,7 +26,7 @@ _defaults: &defaults
     - run: node -v
     - checkout
     - restore_cache: *restore_yarn_cache
-    - run: yarn install --frozen-lockfile
+    - run: yarn install --frozen-lockfile --production
     - save_cache: *save_yarn_cache
     - run: npm run lint
 

@@ -22,6 +22,7 @@ function formatWithInspect(val, inspectOptions = {}) {
   const prefix = isPrimitive(val) ? ' ' : EOL;
   const shouldFormat = typeof val !== 'string';
   const options = { ...defaultInspectOpts, ...inspectOptions };
+  // const options = Object.assign({}, defaultInspectOpts, inspectOptions);
 
   const formattedVal = shouldFormat ? inspect(val, options) : val;
 

@@ -54,6 +54,12 @@ jobs:
       # Expected version "^8.12.0 || >=9.7.0".
       - image: circleci/node:8.12
 
+  node-v6:
+    <<: *defaults
+
+    docker:
+      - image: circleci/node:6.10
+
 workflows:
   version: 2
   node-multi-build:
@@ -61,3 +67,4 @@ workflows:
       - node-latest
       - node-lts
       - node-v8
+      - node-v6

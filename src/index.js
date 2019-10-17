@@ -21,9 +21,10 @@ function isPrimitive(val) {
 function formatWithInspect(val, inspectOptions = {}) {
   const prefix = isPrimitive(val) ? ' ' : EOL;
   const shouldFormat = typeof val !== 'string';
-  const formattedVal = shouldFormat
-    ? inspect(val, { ...defaultInspectOpts, ...inspectOptions })
-    : val;
+  const options = { ...defaultInspectOpts, ...inspectOptions };
+  // const options = Object.assign({}, defaultInspectOpts, inspectOptions);
+
+  const formattedVal = shouldFormat ? inspect(val, options) : val;
 
   return prefix + formattedVal;
 }
